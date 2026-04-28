@@ -17,13 +17,15 @@ function printTable(profiles) {
     return;
   }
 
-  const cols = ['name', 'email', 'role', 'jobTitle', 'createdAt'];
-  const rows = profiles.map((p) =>
-    cols.map((c) => {
-      const val = p[c] ?? '—';
-      return c === 'createdAt' ? new Date(val).toLocaleDateString() : val;
-    })
-  );
+  const cols = [
+    'name',
+    'gender',
+    'age',
+    'age_group',
+    'country_id',
+    'country_name',
+  ];
+  const rows = profiles.map((p) => cols.map((c) => p[c] ?? '—'));
 
   const widths = cols.map((c, i) =>
     Math.max(c.length, ...rows.map((r) => String(r[i]).length))
@@ -47,25 +49,28 @@ function printTable(profiles) {
 async function listProfiles(opts) {
   requireAuth();
   try {
+    if (opts.search) {
+      // natural language search — different route and param
+      const { data } = await client.get('/profiles/search', {
+        params: { q: opts.search, page: opts.page, limit: opts.limit },
+      });
+      const profiles = data.data ?? [];
+      console.log(`\n📋  Search results for: "${opts.search}"`);
+      printTable(profiles);
+      return;
+    }
+
+    // regular list with filters
     const params = {};
     if (opts.page) params.page = opts.page;
     if (opts.limit) params.limit = opts.limit;
     if (opts.role) params.role = opts.role;
     if (opts.sort) params.sort = opts.sort;
-    if (opts.search) params.search = opts.search;
 
     const { data } = await client.get('/profiles', { params });
-    const profiles = data.data ?? data.profiles ?? data;
-
+    const profiles = data.data ?? [];
     console.log(`\n📋  Profiles  (page ${opts.page ?? 1})`);
-    printTable(Array.isArray(profiles) ? profiles : []);
-
-    if (data.pagination) {
-      const p = data.pagination;
-      console.log(
-        `    Page ${p.page} of ${p.totalPages}  |  Total: ${p.total}\n`
-      );
-    }
+    printTable(profiles);
   } catch (err) {
     console.error(`\n✖  ${err.response?.data?.message ?? err.message}\n`);
     process.exit(1);
