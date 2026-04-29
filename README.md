@@ -86,7 +86,10 @@ npm link
 
 ```bash
 npm install -g insighta_adv_cli
+
 ```
+
+Live at: https://www.npmjs.com/package/insighta_adv_cli
 
 ### Available Commands
 
