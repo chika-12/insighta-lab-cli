@@ -1,10 +1,10 @@
 {
-  "name": "insighta-cli",
+  "name": "insighta_adv_cli",
   "version": "1.0.0",
   "description": "CLI tool for Insighta Labs+ Profiles API",
   "type": "module",
   "bin": {
-    "insighta": "./bin/insighta.js"
+    "insighta": "bin/insighta.js"
   },
   "scripts": {
     "start": "node bin/insighta.js"

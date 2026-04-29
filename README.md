@@ -59,13 +59,33 @@ The `source=cli` query parameter is what tells the backend to redirect tokens to
 
 ## CLI Usage
 
-### Installation
+## Installation
+
+### Option 1 — Install directly from GitHub
+
+```bash
+npm install -g github:https://github.com/chika-12/insighta-lab-cli
+```
+
+Then use it from anywhere:
+
+```bash
+insighta --help
+```
+
+### Option 2 — Clone and link locally
 
 ```bash
 git clone <repo-url>
 cd insighta-cli
 npm install
 npm link
+```
+
+### Option 3 — Install from npm
+
+```bash
+npm install -g insighta_adv_cli
 ```
 
 ### Available Commands
