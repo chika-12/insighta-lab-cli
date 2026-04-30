@@ -1,7 +1,7 @@
 import http from 'http';
 import open from 'open';
 import { saveTokens } from '../auth/tokenStore.js';
-const BASE_URL = 'https://hngintern-production-7bfd.up.railway.app';
+const BASE_URL = 'https://hngstage3-production.up.railway.app';
 const CALLBACK_PORT = 4242;
 export async function loginAction() {
   const authUrl = `${BASE_URL}/api/v1/auth/github?source=cli`;

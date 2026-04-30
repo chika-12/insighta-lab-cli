@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getTokens, saveTokens, clearTokens } from '../auth/tokenStore.js';
-const BASE_URL = 'https://hngintern-production-7bfd.up.railway.app';
+const BASE_URL = 'https://hngstage3-production.up.railway.app';
 
 const client = axios.create({
   baseURL: `${BASE_URL}/api/v1`,
