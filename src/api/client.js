@@ -4,6 +4,9 @@ const BASE_URL = 'https://hngstage3-production.up.railway.app';
 
 const client = axios.create({
   baseURL: `${BASE_URL}/api/v1`,
+  headers: {
+    'api-version': 'v1',
+  },
   timeout: 15000,
 });
 
