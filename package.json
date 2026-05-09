@@ -1,6 +1,6 @@
 {
   "name": "insighta_adv_cli",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "CLI tool for Insighta Labs+ Profiles API",
   "type": "module",
   "bin": {
