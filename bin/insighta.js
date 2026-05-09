@@ -4,13 +4,14 @@ import { Command } from 'commander';
 import { loginAction } from '../src/commands/login.js';
 import { logoutAction } from '../src/commands/logout.js';
 import { registerProfilesCommand } from '../src/commands/profiles/index.js';
+const { version } = require('../package.json');
 
 const program = new Command();
 
 program
   .name('insighta')
   .description('Insighta Labs+ CLI — manage profiles from your terminal')
-  .version('1.0.0');
+  .version(version);
 
 program
   .command('login')
@@ -50,7 +51,7 @@ program
       const { data } = await client.get('/auth/me');
       const user = data.data ?? data;
       console.log(
-        `\n👤  ${user.name ?? user.username}  (${user.email ?? '—'})`
+        `\n👤  ${user.name ?? user.username}  (${user.email ?? '—'})`,
       );
       console.log(`    Role: ${user.role}`);
       console.log(`    ID:   ${user._id ?? user.id}\n`);
